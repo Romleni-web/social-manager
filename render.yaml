@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: social-media-backend
+    runtime: node
+    plan: standard
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: social-media-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: social-media-redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://your-vercel-app-url.vercel.app
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        value: noreply@socialai.com
+      - key: FLW_PUBLIC_KEY
+        sync: false
+      - key: FLW_SECRET_KEY
+        sync: false
+
+databases:
+  - name: social-media-db
+    plan: standard
+    databaseName: social_saas
+    user: admin
+
+redis:
+  - name: social-media-redis
+    plan: standard
+    ipAllowList: []

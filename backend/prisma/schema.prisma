@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String          @id @default(cuid())
+  email            String          @unique
+  password         String?
+  name             String?
+  avatar           String?
+  googleId         String?         @unique
+  twoFactorEnabled Boolean         @default(false)
+
+  // Billing fields
+  stripeCustomerId String?         @unique
+  plan             String          @default("FREE") // FREE, STARTER, PRO, BUSINESS
+  creditsRemaining Int             @default(10)     // AI credits
+
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  workspaces       WorkspaceMember[]
+}
+
+model Workspace {
+  id          String      @id @default(cuid())
+  name        String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  members     WorkspaceMember[]
+  accounts    SocialAccount[]
+  posts       Post[]
+  media       Media[]
+  brandKit    BrandKit?
+}
+
+model WorkspaceMember {
+  id          String    @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        String    @default("EDITOR")
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@unique([workspaceId, userId])
+}
+
+model SocialAccount {
+  id            String    @id @default(cuid())
+  workspaceId   String
+  platform      String
+  platformId    String
+  name          String
+  handle        String?
+  accessToken   String
+  refreshToken  String?
+  expiresAt     DateTime?
+  workspace     Workspace @relation(fields: [workspaceId], references: [id])
+  posts         Post[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([platform, platformId])
+}
+
+model Post {
+  id              String        @id @default(cuid())
+  workspaceId     String
+  accountId       String
+  content         String
+  media           Media[]
+  status          String        @default("DRAFT")
+  scheduledAt     DateTime?
+  publishedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  aiMetadata      String?
+  workspace       Workspace     @relation(fields: [workspaceId], references: [id])
+  account         SocialAccount @relation(fields: [accountId], references: [id])
+  analytics       Analytics?
+}
+
+model Media {
+  id          String    @id @default(cuid())
+  workspaceId String
+  url         String
+  key         String
+  type        String
+  name        String
+  size        Int
+  tags        String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  posts       Post[]
+  createdAt   DateTime  @default(now())
+}
+
+model BrandKit {
+  id          String    @id @default(cuid())
+  workspaceId String    @unique
+  fonts       String?
+  colors      String?
+  logos       String?
+  voice       String?
+  tone        String?
+  hashtags    String?
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+}
+
+model Analytics {
+  id            String   @id @default(cuid())
+  postId        String   @unique
+  reach         Int      @default(0)
+  impressions   Int      @default(0)
+  likes         Int      @default(0)
+  shares        Int      @default(0)
+  comments      Int      @default(0)
+  clicks        Int      @default(0)
+  updatedAt     DateTime @updatedAt
+  post          Post     @relation(fields: [postId], references: [id])
+}
