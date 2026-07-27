@@ -52,5 +52,14 @@ After the backend is deployed on Render, you need to push the Prisma schema to t
 - `OPENAI_API_KEY` (Add manually)
 - `GOOGLE_CLIENT_ID` / `SECRET` (Add manually)
 
-### Frontend (Vercel)
-- `NEXT_PUBLIC_API_URL` (Your Render API URL)
+## 5. Admin Access
+
+To access the Admin Panel at `/admin`, your user account must have the `ADMIN` role. 
+
+To promote a user to Admin:
+1.  Connect to your PostgreSQL database (via Render's Shell or a local client).
+2.  Run the following SQL:
+    ```sql
+    UPDATE "User" SET role = 'ADMIN' WHERE email = 'your-email@example.com';
+    ```
+3.  Restart your backend service if needed.

@@ -20,6 +20,7 @@ model User {
   stripeCustomerId String?         @unique
   plan             String          @default("FREE") // FREE, STARTER, PRO, BUSINESS
   creditsRemaining Int             @default(10)     // AI credits
+  role             String          @default("USER") // USER, ADMIN
 
   createdAt        DateTime        @default(now())
   updatedAt        DateTime        @updatedAt

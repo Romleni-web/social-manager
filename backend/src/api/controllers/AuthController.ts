@@ -12,11 +12,15 @@ export class AuthController {
       const { email, password, name } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
 
+      // Check if this is the designated admin email
+      const role = email === process.env.ADMIN_EMAIL ? 'ADMIN' : 'USER';
+
       const user = await prisma.user.create({
         data: {
           email,
           password: hashedPassword,
           name,
+          role,
         },
       });
 
