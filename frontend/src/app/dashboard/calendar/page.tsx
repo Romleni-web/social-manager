@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
 export default function CalendarPage() {
   const days = Array.from({ length: 35 }, (_, i) => i + 1);
