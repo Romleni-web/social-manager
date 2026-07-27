@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { postQueue } from '../../infrastructure/QueueService';
 
 const prisma = new PrismaClient();
 
@@ -13,9 +14,13 @@ export class PostController {
         accountId,
         content,
         scheduledAt: scheduledAt ? new Date(scheduledAt) : null,
-        status: scheduledAt ? 'SCHEDULED' : 'DRAFT',
+        status: scheduledAt ? 'SCHEDULED' : 'PENDING',
       },
     });
+
+    // Add to background queue for immediate or scheduled processing
+    const delay = scheduledAt ? new Date(scheduledAt).getTime() - Date.now() : 0;
+    await postQueue.add('publish-post', { postId: post.id }, { delay: Math.max(0, delay) });
 
     res.status(201).json(post);
   }
