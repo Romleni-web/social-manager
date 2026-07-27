@@ -40,7 +40,7 @@ export const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-screen bg-white/5 backdrop-blur-xl border-r border-white/10 flex flex-col p-4">
+    <div className="w-64 h-screen bg-black border-r border-white/10 flex flex-col p-4">
       <div className="flex items-center gap-2 px-2 mb-8">
         <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
           <Sparkles className="text-white w-5 h-5" />

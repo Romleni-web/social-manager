@@ -3,9 +3,9 @@ import { Download, Filter, TrendingUp, Users, Eye, MousePointer2 } from 'lucide-
 
 const metrics = [
   { label: 'Impressions', value: '425.2k', change: '+18.4%', icon: Eye, color: 'text-blue-400' },
-  { label: 'Engagement Rate', value: '3.82%', change: '+2.1%', icon: TrendingUp, color: 'text-purple-400' },
-  { label: 'Link Clicks', value: '8,420', change: '+12.5%', icon: MousePointer2, color: 'text-emerald-400' },
-  { label: 'New Followers', value: '1,240', change: '+5.2%', icon: Users, color: 'text-orange-400' },
+  { label: 'Engagement Rate', value: '3.82%', change: '+2.1%', icon: TrendingUp, color: 'text-blue-500' },
+  { label: 'Link Clicks', value: '8,420', change: '+12.5%', icon: MousePointer2, color: 'text-blue-600' },
+  { label: 'New Followers', value: '1,240', change: '+5.2%', icon: Users, color: 'text-blue-300' },
 ];
 
 export default function AnalyticsPage() {
@@ -53,7 +53,7 @@ export default function AnalyticsPage() {
              {Array.from({ length: 12 }).map((_, i) => (
                <div key={i} className="flex-1 space-y-2">
                  <div
-                   className="w-full bg-primary-600/40 hover:bg-primary-600 transition-all rounded-t-lg"
+                   className="w-full bg-blue-600/40 hover:bg-blue-600 transition-all rounded-t-lg"
                    style={{ height: `${Math.random() * 80 + 20}%` }}
                  />
                  <span className="block text-[10px] text-center text-slate-500 font-bold">M{i+1}</span>

@@ -14,21 +14,21 @@ import {
 
 const stats = [
   { label: 'Total Followers', value: '128.4k', change: '+12%', icon: Users, color: 'text-blue-500' },
-  { label: 'Avg Engagement', value: '4.2%', change: '+0.8%', icon: BarChart2, color: 'text-purple-500' },
-  { label: 'Total Reach', value: '1.2M', change: '+24%', icon: TrendingUp, color: 'text-emerald-500' },
-  { label: 'Link Clicks', value: '14.2k', change: '+5%', icon: MousePointer2, color: 'text-orange-500' },
+  { label: 'Avg Engagement', value: '4.2%', change: '+0.8%', icon: BarChart2, color: 'text-blue-400' },
+  { label: 'Total Reach', value: '1.2M', change: '+24%', icon: TrendingUp, color: 'text-blue-600' },
+  { label: 'Link Clicks', value: '14.2k', change: '+5%', icon: MousePointer2, color: 'text-blue-300' },
 ];
 
 const postStats = [
   { label: 'Scheduled', value: '24', icon: Calendar, color: 'text-blue-400' },
-  { label: 'Published', value: '1,420', icon: CheckCircle2, color: 'text-emerald-400' },
+  { label: 'Published', value: '1,420', icon: CheckCircle2, color: 'text-blue-500' },
   { label: 'Drafts', value: '12', icon: FileText, color: 'text-slate-400' },
-  { label: 'Failed', value: '2', icon: AlertCircle, color: 'text-rose-400' },
+  { label: 'Failed', value: '2', icon: AlertCircle, color: 'text-blue-800' },
 ];
 
 const usageStats = [
-  { label: 'AI Credits', value: '840/1000', icon: Cpu, color: 'text-indigo-400', progress: 84 },
-  { label: 'Storage', value: '1.2GB/5GB', icon: Database, color: 'text-cyan-400', progress: 24 },
+  { label: 'AI Credits', value: '840/1000', icon: Cpu, color: 'text-blue-400', progress: 84 },
+  { label: 'Storage', value: '1.2GB/5GB', icon: Database, color: 'text-blue-600', progress: 24 },
 ];
 
 export default function OverviewPage() {

@@ -28,6 +28,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('SocialAI API is running. Visit /health for status.');
 });
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.use('/api', routes);
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

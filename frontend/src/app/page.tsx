@@ -3,7 +3,7 @@ import { Sparkles, ArrowRight, Shield, Zap, BarChart3 } from 'lucide-react';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-100 selection:bg-primary-500/30">
+    <div className="min-h-screen bg-black text-white selection:bg-primary-500/30">
       {/* Navigation */}
       <nav className="flex items-center justify-between p-6 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
@@ -56,18 +56,18 @@ export default function LandingPage() {
               Generate platform-specific content in seconds. Rewrite, improve, and optimize your posts with one click.
             </p>
           </div>
-          <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 text-left hover:border-emerald-500/50 transition-all">
-            <div className="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6">
-              <BarChart3 className="w-6 h-6 text-emerald-500" />
+          <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 text-left hover:border-blue-500/50 transition-all">
+            <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+              <BarChart3 className="w-6 h-6 text-blue-500" />
             </div>
             <h3 className="text-xl font-bold mb-4">Deep Analytics</h3>
             <p className="text-slate-500 text-sm leading-relaxed">
               Understand your growth with beautiful, data-dense charts. Track engagement across all your connected accounts.
             </p>
           </div>
-          <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 text-left hover:border-purple-500/50 transition-all">
-            <div className="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
-              <Shield className="w-6 h-6 text-purple-500" />
+          <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 text-left hover:border-blue-500/50 transition-all">
+            <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+              <Shield className="w-6 h-6 text-blue-500" />
             </div>
             <h3 className="text-xl font-bold mb-4">Admin Suite</h3>
             <p className="text-slate-500 text-sm leading-relaxed">

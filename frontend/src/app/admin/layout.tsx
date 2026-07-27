@@ -40,10 +40,10 @@ export default function AdminLayout({
   if (isAdmin === false) return null;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#020617] text-slate-100">
+    <div className="flex h-screen overflow-hidden bg-black text-slate-100">
       {/* Admin Sidebar Branding */}
-      <div className="w-64 h-screen bg-slate-950 border-r border-white/5 flex flex-col p-4">
-        <div className="flex items-center gap-2 px-2 mb-8 text-rose-500">
+      <div className="w-64 h-screen bg-black border-r border-white/5 flex flex-col p-4">
+        <div className="flex items-center gap-2 px-2 mb-8 text-blue-500">
           <ShieldCheck className="w-8 h-8" />
           <span className="text-xl font-black tracking-tighter uppercase italic">Admin Panel</span>
         </div>
@@ -58,7 +58,7 @@ export default function AdminLayout({
         </nav>
       </div>
 
-      <main className="flex-1 overflow-y-auto bg-slate-900 p-8">
+      <main className="flex-1 overflow-y-auto bg-black p-8">
         <div className="max-w-7xl mx-auto">
           {children}
         </div>
