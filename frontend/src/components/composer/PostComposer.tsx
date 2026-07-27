@@ -14,9 +14,11 @@ import {
   Sparkles,
   X,
   Plus,
-  Clock
+  Clock,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
+import api from '@/lib/api';
 
 export const PostComposer = ({ onClose }: { onClose: () => void }) => {
   const [content, setContent] = useState('');
