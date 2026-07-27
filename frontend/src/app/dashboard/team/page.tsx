@@ -11,11 +11,11 @@ const members = [
 
 const getRoleIcon = (role: string) => {
   switch (role) {
-    case 'Owner': return <ShieldCheck className="w-4 h-4 text-purple-400" />;
-    case 'Admin': return <ShieldCheck className="w-4 h-4 text-blue-400" />;
-    case 'Editor': return <Edit3 className="w-4 h-4 text-emerald-400" />;
-    case 'Approver': return <CheckCircle className="w-4 h-4 text-amber-400" />;
-    case 'Viewer': return <Eye className="w-4 h-4 text-slate-400" />;
+    case 'Owner': return <ShieldCheck className="w-4 h-4 text-primary-600" />;
+    case 'Admin': return <ShieldCheck className="w-4 h-4 text-black" />;
+    case 'Editor': return <Edit3 className="w-4 h-4 text-slate-400" />;
+    case 'Approver': return <CheckCircle className="w-4 h-4 text-primary-500" />;
+    case 'Viewer': return <Eye className="w-4 h-4 text-slate-300" />;
     default: return null;
   }
 };
@@ -25,54 +25,54 @@ export default function TeamPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Team Management</h1>
-          <p className="text-slate-400 mt-1">Collaborate with your team members and manage permissions.</p>
+          <h1 className="text-3xl font-black tracking-tight uppercase italic text-black">Team Management</h1>
+          <p className="text-slate-500 mt-1 font-bold uppercase text-[10px] tracking-widest">Collaborate with your team members and manage permissions.</p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-2xl transition-all shadow-lg shadow-primary-600/20">
+        <button className="flex items-center gap-2 px-8 py-3 bg-black hover:bg-slate-800 text-white font-black uppercase text-xs tracking-widest rounded-2xl transition-all shadow-xl shadow-black/10">
           <UserPlus className="w-5 h-5" />
           Invite Member
         </button>
       </div>
 
-      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-[40px] overflow-hidden shadow-sm">
         <table className="w-full text-left">
           <thead>
-            <tr className="border-b border-white/5 bg-white/[0.02]">
-              <th className="px-8 py-5 text-xs font-bold text-slate-500 uppercase tracking-widest">Member</th>
-              <th className="px-8 py-5 text-xs font-bold text-slate-500 uppercase tracking-widest">Role</th>
-              <th className="px-8 py-5 text-xs font-bold text-slate-500 uppercase tracking-widest">Status</th>
-              <th className="px-8 py-5 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
+            <tr className="border-b border-slate-100 bg-slate-50/50">
+              <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Member</th>
+              <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Role</th>
+              <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
+              <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-slate-50">
             {members.map((member) => (
-              <tr key={member.id} className="hover:bg-white/[0.02] transition-colors group">
-                <td className="px-8 py-5">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-primary-600/20 text-primary-400 flex items-center justify-center font-bold text-sm border border-primary-600/20">
+              <tr key={member.id} className="hover:bg-slate-50 transition-colors group">
+                <td className="px-10 py-6">
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 rounded-2xl bg-black text-white flex items-center justify-center font-black text-xs shadow-lg shadow-black/10">
                       {member.avatar}
                     </div>
                     <div>
-                      <p className="text-sm font-bold">{member.name}</p>
-                      <p className="text-xs text-slate-500">{member.email}</p>
+                      <p className="text-sm font-black text-black uppercase tracking-tight">{member.name}</p>
+                      <p className="text-[10px] font-bold text-slate-400 mt-0.5">{member.email}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-8 py-5">
-                  <div className="flex items-center gap-2">
+                <td className="px-10 py-6">
+                  <div className="flex items-center gap-3">
                     {getRoleIcon(member.role)}
-                    <span className="text-sm font-medium text-slate-300">{member.role}</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-slate-600">{member.role}</span>
                   </div>
                 </td>
-                <td className="px-8 py-5">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                    member.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
+                <td className="px-10 py-6">
+                  <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest ${
+                    member.status === 'Active' ? 'bg-primary-50 text-primary-600 border border-primary-100' : 'bg-slate-50 text-slate-400 border border-slate-100'
                   }`}>
                     {member.status}
                   </span>
                 </td>
-                <td className="px-8 py-5 text-right">
-                  <button className="p-2 hover:bg-white/10 rounded-xl text-slate-500 group-hover:text-white transition-all">
+                <td className="px-10 py-6 text-right">
+                  <button className="p-3 hover:bg-white hover:shadow-md rounded-xl text-slate-300 hover:text-black border border-transparent hover:border-slate-100 transition-all">
                     <MoreHorizontal className="w-5 h-5" />
                   </button>
                 </td>

@@ -148,11 +148,11 @@ export const PostComposer = ({ onClose }: { onClose: () => void }) => {
           </div>
 
           {/* Right Side: Preview */}
-          <div className="w-[360px] bg-slate-50 p-6 overflow-y-auto custom-scrollbar">
-            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 text-center">Live Preview</h3>
+          <div className="w-[360px] bg-slate-50 p-8 overflow-y-auto custom-scrollbar">
+            <h3 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 text-center">Preview</h3>
 
             {/* Instagram Preview Example */}
-            <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50">
+            <div className="bg-white border border-slate-200 rounded-[32px] overflow-hidden shadow-2xl shadow-slate-200/50 scale-105">
               <div className="p-4 flex items-center gap-3 border-b border-slate-100">
                 <div className="w-8 h-8 rounded-full bg-slate-200 p-0.5">
                   <div className="w-full h-full rounded-full bg-white" />
