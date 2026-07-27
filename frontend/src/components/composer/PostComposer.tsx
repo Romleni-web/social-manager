@@ -13,7 +13,8 @@ import {
   Link as LinkIcon,
   Sparkles,
   X,
-  Plus
+  Plus,
+  Clock
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
