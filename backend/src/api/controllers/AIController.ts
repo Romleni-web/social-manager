@@ -5,8 +5,8 @@ import { BillingService } from '../../services/BillingService';
 export class AIController {
   static async generate(req: Request, res: Response) {
     try {
-      // Logic: Get userId from JWT (req.user is typically set by auth middleware)
-      const userId = (req as any).user?.userId;
+      // Logic: Get id from the user object set by auth middleware
+      const userId = (req as any).user?.id;
 
       // Enforce credit usage
       if (userId) {

@@ -40,12 +40,12 @@ export const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-screen bg-black border-r border-white/10 flex flex-col p-4">
+    <div className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col p-4">
       <div className="flex items-center gap-2 px-2 mb-8">
-        <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
+        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
           <Sparkles className="text-white w-5 h-5" />
         </div>
-        <span className="text-xl font-bold tracking-tight">SocialAI</span>
+        <span className="text-xl font-black tracking-tight uppercase italic">SocialAI</span>
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto pr-2 custom-scrollbar">
@@ -56,17 +56,17 @@ export const Sidebar = () => {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-xl transition-all duration-200 group",
+                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group",
                 isActive
-                  ? "bg-primary-600/10 text-primary-500 shadow-[inset_0_0_0_1px_rgba(139,92,246,0.2)]"
-                  : "text-slate-400 hover:text-slate-100 hover:bg-white/5"
+                  ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20"
+                  : "text-slate-500 hover:text-black hover:bg-slate-50"
               )}
             >
               <item.icon className={cn(
                 "w-5 h-5 transition-colors",
-                isActive ? "text-primary-500" : "group-hover:text-slate-100"
+                isActive ? "text-white" : "group-hover:text-black"
               )} />
-              <span className="text-sm font-medium">{item.label}</span>
+              <span className="text-sm font-bold uppercase tracking-tight">{item.label}</span>
             </Link>
           );
         })}

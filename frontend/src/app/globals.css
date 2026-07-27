@@ -7,11 +7,6 @@
   --foreground: #000000;
 }
 
-[data-theme='dark'] {
-  --background: #000000;
-  --foreground: #ffffff;
-}
-
 @layer base {
   body {
     @apply bg-background text-foreground;
@@ -20,10 +15,10 @@
 
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/10 backdrop-blur-md border border-black/5;
   }
 
   .glass-dark {
-    @apply bg-black/5 backdrop-blur-md border border-white/5;
+    @apply bg-black/5 backdrop-blur-md border border-black/10;
   }
 }

@@ -28,43 +28,43 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-2xl mb-6 shadow-xl shadow-primary-600/20">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-black rounded-2xl mb-6 shadow-xl shadow-black/10">
             <Sparkles className="text-white w-8 h-8" />
           </div>
-          <h1 className="text-3xl font-black tracking-tight">Welcome Back</h1>
-          <p className="text-slate-500 mt-2">Sign in to manage your social presence.</p>
+          <h1 className="text-3xl font-black tracking-tight uppercase italic">Welcome Back</h1>
+          <p className="text-slate-500 mt-2 font-bold uppercase text-[10px] tracking-widest">Sign in to manage your social presence.</p>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] p-8">
+        <div className="bg-white border border-slate-200 rounded-[32px] p-8 shadow-2xl shadow-slate-200/50">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-500 text-sm font-bold text-center">
+              <div className="p-4 bg-rose-50 border border-rose-100 rounded-2xl text-rose-600 text-xs font-black uppercase tracking-widest text-center">
                 {error}
               </div>
             )}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
+              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
               <input
                 required
                 type="email"
                 placeholder="name@company.com"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-primary-500 transition-colors text-sm"
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-primary-500 transition-colors text-sm font-bold"
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center ml-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Password</label>
-                <button type="button" className="text-[10px] font-bold text-primary-400 hover:text-primary-300 uppercase">Forgot?</button>
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Password</label>
+                <button type="button" className="text-[10px] font-black text-primary-600 hover:text-primary-700 uppercase">Forgot?</button>
               </div>
               <input
                 required
                 type="password"
                 placeholder="••••••••"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-primary-500 transition-colors text-sm"
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-primary-500 transition-colors text-sm font-bold"
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
@@ -72,9 +72,9 @@ export default function LoginPage() {
             <button
               disabled={loading}
               type="submit"
-              className="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white font-black rounded-2xl transition-all shadow-xl shadow-primary-600/20 flex items-center justify-center gap-2 group"
+              className="w-full py-4 bg-black hover:bg-slate-900 text-white font-black rounded-2xl transition-all shadow-xl shadow-black/20 flex items-center justify-center gap-2 group uppercase tracking-widest text-xs"
             >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
+              {loading ? <Loader2 className="w-5 h-5 animate-spin text-white" /> : (
                 <>
                   Sign In
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -84,9 +84,9 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-sm text-slate-500 font-medium">
+        <p className="text-center text-[10px] text-slate-500 font-black uppercase tracking-widest">
           New to SocialAI?{' '}
-          <Link href="/register" className="text-primary-400 font-bold hover:text-primary-300">Create an account</Link>
+          <Link href="/register" className="text-primary-600 font-black hover:text-primary-700 border-b-2 border-primary-500/20">Create an account</Link>
         </p>
       </div>
     </div>

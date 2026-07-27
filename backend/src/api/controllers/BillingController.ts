@@ -5,7 +5,7 @@ export class BillingController {
   static async createCheckout(req: Request, res: Response) {
     try {
       const { planName, amount } = req.body;
-      const userId = (req as any).user?.userId;
+      const userId = (req as any).user?.id;
 
       if (!userId) {
         return res.status(401).json({ error: 'Unauthorized' });
