@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send, Sparkles, User, Bot, Zap, Image as ImageIcon, Layout, MessageSquare, Loader2 } from 'lucide-react';
 import api from '@/lib/api';
+import { useStore } from '@/store/useStore';
 
 const suggestions = [
   { icon: MessageSquare, label: 'Generate a Twitter thread about SaaS' },
@@ -37,6 +38,12 @@ export default function AIAssistantPage() {
         role: 'assistant',
         content: response.data.content
       }]);
+
+      // Update user credits in store
+      const user = useStore.getState().user;
+      if (user) {
+        useStore.getState().setAuth({ ...user, creditsRemaining: user.creditsRemaining - 1 }, useStore.getState().token!);
+      }
     } catch (error) {
       setMessages(prev => [...prev, {
         role: 'assistant',

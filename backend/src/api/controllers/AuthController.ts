@@ -21,7 +21,24 @@ export class AuthController {
           password: hashedPassword,
           name,
           role,
+          workspaces: {
+            create: {
+              workspace: {
+                create: {
+                  name: `${name || 'My'}'s Workspace`,
+                }
+              },
+              role: 'OWNER'
+            }
+          }
         },
+        include: {
+          workspaces: {
+            include: {
+              workspace: true
+            }
+          }
+        }
       });
 
       // Send Welcome Email
@@ -36,7 +53,16 @@ export class AuthController {
 
   static async login(req: Request, res: Response) {
     const { email, password } = req.body;
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({
+      where: { email },
+      include: {
+        workspaces: {
+          include: {
+            workspace: true
+          }
+        }
+      }
+    });
 
     if (!user || !user.password) return res.status(401).json({ error: 'Invalid credentials' });
 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Sparkles, Loader2, ArrowRight } from 'lucide-react';
 import api from '@/lib/api';
+import { useStore } from '@/store/useStore';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,7 +19,17 @@ export default function LoginPage() {
     setError('');
     try {
       const response = await api.post('/auth/login', formData);
-      localStorage.setItem('token', response.data.token);
+      const { user, token } = response.data;
+
+      const store = useStore.getState();
+      store.setAuth(user, token);
+
+      const workspaceId = user.workspaces?.[0]?.workspaceId;
+      if (workspaceId) {
+        store.setActiveWorkspace(workspaceId);
+      }
+
+      localStorage.setItem('token', token);
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Login failed. Please check your credentials.');

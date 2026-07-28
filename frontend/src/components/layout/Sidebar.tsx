@@ -16,7 +16,8 @@ import {
   Rss,
   TrendingUp,
   Users,
-  Settings
+  Settings,
+  X
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
@@ -36,41 +37,60 @@ const menuItems = [
   { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = ({ isOpen, onClose }: { isOpen?: boolean, onClose?: () => void }) => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col p-4">
-      <div className="flex items-center gap-2 px-2 mb-8">
-        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-          <Sparkles className="text-white w-5 h-5" />
-        </div>
-        <span className="text-xl font-black tracking-tight uppercase italic">SocialAI</span>
-      </div>
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm"
+          onClick={onClose}
+        />
+      )}
 
-      <nav className="flex-1 space-y-1 overflow-y-auto pr-2 custom-scrollbar">
-        {menuItems.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group",
-                isActive
-                  ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20"
-                  : "text-slate-500 hover:text-black hover:bg-slate-50"
-              )}
-            >
-              <item.icon className={cn(
-                "w-5 h-5 transition-colors",
-                isActive ? "text-white" : "group-hover:text-black"
-              )} />
-              <span className="text-sm font-bold uppercase tracking-tight">{item.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
-    </div>
+      <div className={cn(
+        "fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-100 flex flex-col p-6 transition-transform duration-300 transform lg:relative lg:translate-x-0 shadow-2xl lg:shadow-none",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-black rounded-2xl flex items-center justify-center shadow-lg">
+              <Sparkles className="text-white w-6 h-6" />
+            </div>
+            <span className="text-2xl font-black tracking-tighter uppercase italic">SocialAI</span>
+          </div>
+          <button onClick={onClose} className="lg:hidden p-2 hover:bg-slate-50 rounded-xl">
+            <X className="w-6 h-6 text-slate-400" />
+          </button>
+        </div>
+
+        <nav className="flex-1 space-y-1.5 overflow-y-auto pr-2 custom-scrollbar">
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onClose}
+                className={cn(
+                  "flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 group",
+                  isActive
+                    ? "bg-primary-500 text-white shadow-xl shadow-primary-500/20"
+                    : "text-slate-500 hover:text-black hover:bg-slate-50"
+                )}
+              >
+                <item.icon className={cn(
+                  "w-5 h-5 transition-colors",
+                  isActive ? "text-white" : "group-hover:text-black"
+                )} />
+                <span className="text-[11px] font-black uppercase tracking-widest">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+    </>
   );
 };

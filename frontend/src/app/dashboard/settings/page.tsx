@@ -53,28 +53,30 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-12">
-      <div>
-        <h1 className="text-3xl font-black tracking-tight uppercase italic text-black">Settings & Billing</h1>
-        <p className="text-slate-500 mt-1 font-bold uppercase text-[10px] tracking-widest">Manage your plan, billing information, and account preferences.</p>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-black tracking-tight uppercase italic text-black">Settings & Billing</h1>
+          <p className="text-slate-500 mt-1 font-bold uppercase text-[9px] md:text-[10px] tracking-widest">Manage your plan and preferences.</p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`relative bg-white border-2 rounded-[40px] p-10 flex flex-col transition-all hover:scale-[1.02] ${plan.color}`}
+            className={`relative bg-white border-2 rounded-[32px] md:rounded-[40px] p-6 md:p-10 flex flex-col transition-all hover:scale-[1.02] ${plan.color}`}
           >
             {plan.popular && (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-[10px] font-black uppercase tracking-[0.2em] px-6 py-2 rounded-full shadow-lg shadow-primary-500/20">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] px-4 md:px-6 py-1.5 md:py-2 rounded-full shadow-lg shadow-primary-500/20 whitespace-nowrap">
                 Most Popular
               </div>
             )}
 
-            <div className="mb-10">
-              <h3 className="text-xl font-black uppercase text-black italic mb-2">{plan.name}</h3>
+            <div className="mb-6 md:mb-10">
+              <h3 className="text-lg md:text-xl font-black uppercase text-black italic mb-2">{plan.name}</h3>
               <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-black text-black tracking-tighter">KES {plan.price}</span>
-                <span className="text-slate-400 text-xs font-black uppercase">/mo</span>
+                <span className="text-3xl md:text-4xl font-black text-black tracking-tighter">KES {plan.price}</span>
+                <span className="text-slate-400 text-[10px] font-black uppercase">/mo</span>
               </div>
             </div>
 

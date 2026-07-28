@@ -19,8 +19,10 @@ import {
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import api from '@/lib/api';
+import { useStore } from '@/store/useStore';
 
 export const PostComposer = ({ onClose }: { onClose: () => void }) => {
+  const { activeWorkspaceId } = useStore();
   const [content, setContent] = useState('');
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(['instagram', 'twitter']);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -42,24 +44,30 @@ export const PostComposer = ({ onClose }: { onClose: () => void }) => {
   };
 
   const handlePostNow = async () => {
+    if (!content || !activeWorkspaceId) return;
     try {
+      // Get all connected account IDs for the selected platforms
+      // In a real app, you would fetch these from the store or API
+      const selectedAccountIds = ['simulated-id-1', 'simulated-id-2'];
+
       await api.post('/posts', {
         content,
-        workspaceId: 'default', // In a real app, get from context
-        accountId: 'default',   // In a real app, get from selected platforms
+        workspaceId: activeWorkspaceId,
+        accountIds: selectedAccountIds,
       });
-      alert('Post created successfully!');
+      alert('Automatic publishing initiated for ' + selectedPlatforms.join(', ') + '!');
       onClose();
     } catch (error) {
       console.error('Posting failed:', error);
+      alert('Failed to post. Check credits.');
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-      <div className="bg-white border border-slate-200 w-full max-w-4xl max-h-[90vh] rounded-[32px] shadow-2xl overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6 bg-black/80 backdrop-blur-sm">
+      <div className="bg-white border-0 md:border md:border-slate-200 w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] rounded-0 md:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-100">
+        <div className="flex items-center justify-between p-6 md:p-8 border-b border-slate-100 bg-white sticky top-0 z-10">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-black uppercase italic">Create Post</h2>
             <span className="text-[10px] font-black bg-primary-500/10 text-primary-600 px-2 py-1 rounded-full border border-primary-500/20 uppercase tracking-widest">
@@ -71,10 +79,10 @@ export const PostComposer = ({ onClose }: { onClose: () => void }) => {
           </button>
         </div>
 
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
           {/* Left Side: Editor */}
-          <div className="flex-1 flex flex-col border-r border-slate-100 overflow-y-auto custom-scrollbar">
-            <div className="p-6 space-y-6">
+          <div className="flex-1 flex flex-col border-r-0 md:border-r border-slate-100 overflow-y-auto custom-scrollbar">
+            <div className="p-6 md:p-10 space-y-8">
               {/* Platform Selector */}
               <div className="flex gap-2">
                 {['facebook', 'instagram', 'twitter', 'linkedin', 'tiktok'].map(p => (
@@ -148,8 +156,8 @@ export const PostComposer = ({ onClose }: { onClose: () => void }) => {
           </div>
 
           {/* Right Side: Preview */}
-          <div className="w-[360px] bg-slate-50 p-8 overflow-y-auto custom-scrollbar">
-            <h3 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 text-center">Preview</h3>
+          <div className="hidden md:block w-[400px] bg-slate-50 p-10 overflow-y-auto custom-scrollbar">
+            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-12 text-center italic">Live Preview</h3>
 
             {/* Instagram Preview Example */}
             <div className="bg-white border border-slate-200 rounded-[32px] overflow-hidden shadow-2xl shadow-slate-200/50 scale-105">
